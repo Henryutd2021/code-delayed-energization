@@ -14,13 +14,13 @@ How large is the cost of delayed grid energization for a data center, who bears 
 
 | Element | Content | Article |
 |---|---|---|
-| Request scale | $P_G = \mathrm{PUE}\,P_I$ grid MW, $S = P_G/\mathrm{pf}$ MVA | Section II |
-| CoDE vector | $(C^{\mathrm{priv}}, C^{\mathrm{rate}}, C^{\mathrm{soc}})$, present values, not added | Eq. (1) |
+| Request scale | $`P_G = \mathrm{PUE}\,P_I`$ grid MW, $`S = P_G/\mathrm{pf}`$ MVA | Section II |
+| CoDE vector | $`(C^{\mathrm{priv}}, C^{\mathrm{rate}}, C^{\mathrm{soc}})`$, present values, not added | Eq. (1) |
 | Private | lost margin weighted by realization probability, carrying cost on committed capital with a deployment profile, contract penalties, mitigation premiums | Eq. (2) |
-| Ratepayer | expected utility carrying cost plus expected stranding; delay-attributable part $C^{\mathrm{rate}}(\tau) - C^{\mathrm{rate}}(0)$ | Eq. (3) |
-| Social | pathway-specific external costs; emissions-only form with a social cost of CO$_2$ | Eqs. (4)–(5) |
+| Ratepayer | expected utility carrying cost plus expected stranding; delay-attributable part $`C^{\mathrm{rate}}(\tau) - C^{\mathrm{rate}}(0)`$ | Eq. (3) |
+| Social | pathway-specific external costs; emissions-only form with a social cost of CO₂ | Eqs. (4)–(5) |
 | Metrics | DCI per MW-month; avoided cost and BEAP of an acceleration option; net-benefit test | Eqs. (6)–(8) |
-| Staged service | part of the capacity served early with a revenue-equivalent fraction $g(f)$ | Eq. (9) |
+| Staged service | part of the capacity served early with a revenue-equivalent fraction $`g(f)`$ | Eq. (9) |
 | Realization risk | decomposition of private CoDE and its elasticity with respect to realization probability | Eq. (10) |
 | Study tools | full-factorial lattice, Latin hypercube screening with rank correlations, delay–realization dependence, tariff stress, bridge-power pathway | Section III |
 
@@ -84,7 +84,7 @@ print(net_benefit(option.private, option.ratepayer, implementation_cost=50e6, ad
 
 ## What this repository does not contain
 
-This repository presents the modelling framework. It does not contain the code, the parameter files or the results used for the published article. For the article's results, see the article.
+This repository presents the modelling framework. It does not contain the code, the parameter files or the results used for the accepted article. For the article's results, see the article.
 
 ## Citation
 

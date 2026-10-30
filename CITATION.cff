@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite the article below (preferred citation) and this software."
 title: "CoDE framework: the Cost of Delayed Energization for AI data centers"
-version: "1.0.0"
+version: "1.0.1"
 repository-code: "https://github.com/Henryutd2021/code-delayed-energization"
 license: MIT
 authors:

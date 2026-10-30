@@ -19,7 +19,7 @@ from .pathways import BridgeInputs, acceleration_options, bridge_pathway, lb_per
 from .sweeps import (evaluate, full_factorial, latin_hypercube, percentiles_by, rank_correlations,
                      sample_scenarios, tariff_cases)
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 __all__ = [
     "AvoidedCost", "BridgeInputs", "CodeVector", "NetBenefit", "PrivateInputs", "Project", "RatepayerInputs",

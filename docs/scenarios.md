@@ -15,7 +15,7 @@ How the article organizes its case study, and how to set up each part with this 
 
 ## Base case
 
-One project, one delay, one value per parameter; contract and mitigation terms set to zero unless project data exist. Report the CoDE vector (Eq. 1) without a total, the decomposition of each perspective, the ratepayer level split into the delay differential and the $\tau = 0$ stock, and both DCIs (Eq. 6).
+One project, one delay, one value per parameter; contract and mitigation terms set to zero unless project data exist. Report the CoDE vector (Eq. 1) without a total, the decomposition of each perspective, the ratepayer level split into the delay differential and the $`\tau = 0`$ stock, and both DCIs (Eq. 6).
 
 ```python
 from code_delay import read_scenario, code_vector, private_cost, ratepayer_cost, ratepayer_delay_cost, delay_cost_intensity
@@ -25,7 +25,7 @@ code_vector(s); private_cost(s); ratepayer_cost(s); ratepayer_delay_cost(s); del
 
 ## Full-factorial lattice
 
-The article varies ten dimensions jointly: capacity, delay, $V$, $\mu$, $r$, $s$, $q$, $K$, $c$ and the deployment profile. Realization probability and delay vary independently, so percentiles of the set summarize the assumed lattice, not a distribution over projects.
+The article varies ten dimensions jointly: capacity, delay, $`V`$, $`\mu`$, $`r`$, $`s`$, $`q`$, $`K`$, $`c`$ and the deployment profile. Realization probability and delay vary independently, so percentiles of the set summarize the assumed lattice, not a distribution over projects.
 
 ```python
 from code_delay import full_factorial, evaluate, percentiles_by
@@ -55,7 +55,7 @@ Command line: `code-delay lhs scenario.json ranges.json --samples 500 --seed 1 -
 
 ## Delay–realization dependence
 
-A stress test replaces the base $q$ with $q_\beta(\tau)$ (formulation, text relations), for a few values of $\beta$, all anchored at the base delay. Private CoDE then follows Eq. (10): the carrying cost, which does not depend on $q$, bounds how far realization risk can move it. Under milestone financing the ratepayer level rises as $q$ falls (through $\phi_s$); under realization-linked financing ($\phi_u = q$, $\phi_s = p_a$) it falls. Which case applies depends on whether irreversible network commitment precedes or follows project resolution.
+A stress test replaces the base $`q`$ with $`q_\beta(\tau)`$ (formulation, text relations), for a few values of $`\beta`$, all anchored at the base delay. Private CoDE then follows Eq. (10): the carrying cost, which does not depend on $`q`$, bounds how far realization risk can move it. Under milestone financing the ratepayer level rises as $`q`$ falls (through $`\phi_s`$); under realization-linked financing ($`\phi_u = q`$, $`\phi_s = p_a`$) it falls. Which case applies depends on whether irreversible network commitment precedes or follows project resolution.
 
 ```python
 from code_delay import dependence_stress
@@ -64,7 +64,7 @@ dependence_stress(s, betas_per_year=[0.0, 0.08, 0.15], delays_months=[...])     
 
 ## Staged service
 
-First service at several months $\tau_e < \tau_0$ for several fractions $f$ (Eq. 9), with $g(f) = f$ unless a revenue-equivalence curve is given. The private value of partial service is a gross threshold: it excludes the implementation cost $C^{\mathrm{add}}_m$ and risk. Earlier service also brings the stranding write-off forward, so the avoided ratepayer cost is net of that effect.
+First service at several months $`\tau_e < \tau_0`$ for several fractions $`f`$ (Eq. 9), with $`g(f) = f`$ unless a revenue-equivalence curve is given. The private value of partial service is a gross threshold: it excludes the implementation cost $`C^{\mathrm{add}}_m`$ and risk. Earlier service also brings the stranding write-off forward, so the avoided ratepayer cost is net of that effect.
 
 ```python
 from code_delay import acceleration_options
@@ -75,7 +75,7 @@ Command line: `code-delay staged scenario.json --first-service 9 18 --fractions 
 
 ## Tariff stress
 
-Vary the residual ratepayer share, the upgrade cost and the post-realization stranding probability, from developer-funded upgrades ($\rho = 0$) to full exposure. Private CoDE is unchanged; the ratepayer level is what tariff design allocates, and the differential is what acceleration avoids.
+Vary the residual ratepayer share, the upgrade cost and the post-realization stranding probability, from developer-funded upgrades ($`\rho = 0`$) to full exposure. Private CoDE is unchanged; the ratepayer level is what tariff design allocates, and the differential is what acceleration avoids.
 
 ```python
 from code_delay import tariff_cases
@@ -84,7 +84,7 @@ tariff_cases(s, {"developer_funded": {"ratepayer.residual_share": 0.0}, "base": 
 
 ## Bridge power as a priced pathway
 
-A temporary supply (for example a natural-gas bridge) is both a mitigation option and a source of externality, so both sides are evaluated against the same on-time counterfactual: the avoided private cost of the bridged months, Eq. (5) for the added emissions at several values of the social cost of CO$_2$, and the strict upper bound on the power-cost premium $C^{\mathrm{add}}_m$ for Eq. (8) to hold. The wrapper assumes that every realized project uses the bridge ($p_h = q$).
+A temporary supply (for example a natural-gas bridge) is both a mitigation option and a source of externality, so both sides are evaluated against the same on-time counterfactual: the avoided private cost of the bridged months, Eq. (5) for the added emissions at several values of the social cost of CO₂, and the strict upper bound on the power-cost premium $`C^{\mathrm{add}}_m`$ for Eq. (8) to hold. The wrapper assumes that every realized project uses the bridge ($`p_h = q`$).
 
 ```python
 from code_delay import BridgeInputs, bridge_pathway, lb_per_kwh_to_t_per_mwh
@@ -93,11 +93,11 @@ b = BridgeInputs(bridge_months=..., utilization=..., bridge_t_per_mwh=lb_per_kwh
 bridge_pathway(s, b, [low_scc, central_scc, high_scc])
 ```
 
-The direct-CO$_2$ term changes sign when the counterfactual factor exceeds the bridge factor. Under milestone financing, a bridge that also raises the realization probability lowers the ratepayer stranding term; `bridge_pathway` does not include that credit, and it can be evaluated separately with `ratepayer_cost` at the higher $q$.
+The direct-CO₂ term changes sign when the counterfactual factor exceeds the bridge factor. Under milestone financing, a bridge that also raises the realization probability lowers the ratepayer stranding term; `bridge_pathway` does not include that credit, and it can be evaluated separately with `ratepayer_cost` at the higher $`q`$.
 
 ## Reading the results
 
 - Keep the three perspectives apart; combine them only through Eq. (8).
 - Compare the ratepayer **differential**, not the level, with private CoDE and with BEAP.
 - Private DCI does not depend on capacity; it changes with the delay only through discounting and the deployment profile.
-- A high BEAP is no evidence of a comparable public benefit: Eq. (8) depends on $C^{\mathrm{add}}_m$ and on the pathway externality.
+- A high BEAP is no evidence of a comparable public benefit: Eq. (8) depends on $`C^{\mathrm{add}}_m`$ and on the pathway externality.

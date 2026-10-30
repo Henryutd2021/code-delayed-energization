@@ -17,17 +17,17 @@ The article builds its benchmark from public reports, filings and agency publica
 
 | Parameter | Kind of public source | How it becomes an input |
 |---|---|---|
-| $P_I$, $\tau$ | data-center capacity outlooks, reliability assessments, market reports on grid-connection waits, interconnection-queue studies | case sizes and delay bins spanning short to severe delays (scenario values, not observations) |
-| $V$ | market reports on wholesale colocation asking rates | quoted in USD/kW-month; convert to USD per MW-IT-month (× 1,000) |
-| $\mu$ | operator financial results (revenue and adjusted EBITDA) | a corporate margin is a proxy, not a project margin; use it as one end of a range |
-| $K$ | construction-cost outlooks (shell and core; AI fit-out) | USD per MW-IT; state whether IT equipment is included |
-| $r$, $i$, $i_u$ | none universal | WACC-style sensitivity values |
-| $q$, $s$, $c$, $a$, profile | none observable for a project | assumptions or sensitivities; $q$ reflects the gap between announced and realized capacity |
-| $\mathrm{PUE}$, $\mathrm{pf}$ | benchmark engineering values | map MW-IT to grid MW and MVA for request scale |
-| $U$, $\rho$, $p_a$, $\phi_u$ | large-load tariff briefs, tariff dashboards, utility tariff pages, regulatory fact sheets | protections (collateral, minimum bills, exit fees, contributions in aid of construction) lower $\rho$; replace placeholders with case data |
-| $\pi^{\mathrm{contract}}$, $\pi^{\mathrm{mit}}$ | not public for most projects | zero unless project data exist |
-| $\epsilon_h$, $\epsilon_0$ | agency emission factors by fuel and for all generation | lb CO$_2$/kWh to t CO$_2$/MWh (`lb_per_kwh_to_t_per_mwh`); $\epsilon_0$ should be a marginal factor, an average is a proxy |
-| $v_t$ | agency social-cost-of-greenhouse-gas estimates | state the dollar year, emission year and discount basis; convert dollar years with `dollar_factor` |
+| $`P_I`$, $`\tau`$ | data-center capacity outlooks, reliability assessments, market reports on grid-connection waits, interconnection-queue studies | case sizes and delay bins spanning short to severe delays (scenario values, not observations) |
+| $`V`$ | market reports on wholesale colocation asking rates | quoted in USD/kW-month; convert to USD per MW-IT-month (× 1,000) |
+| $`\mu`$ | operator financial results (revenue and adjusted EBITDA) | a corporate margin is a proxy, not a project margin; use it as one end of a range |
+| $`K`$ | construction-cost outlooks (shell and core; AI fit-out) | USD per MW-IT; state whether IT equipment is included |
+| $`r`$, $`i`$, $`i_u`$ | none universal | WACC-style sensitivity values |
+| $`q`$, $`s`$, $`c`$, $`a`$, profile | none observable for a project | assumptions or sensitivities; $`q`$ reflects the gap between announced and realized capacity |
+| $`\mathrm{PUE}`$, $`\mathrm{pf}`$ | benchmark engineering values | map MW-IT to grid MW and MVA for request scale |
+| $`U`$, $`\rho`$, $`p_a`$, $`\phi_u`$ | large-load tariff briefs, tariff dashboards, utility tariff pages, regulatory fact sheets | protections (collateral, minimum bills, exit fees, contributions in aid of construction) lower $`\rho`$; replace placeholders with case data |
+| $`\pi^{\mathrm{contract}}`$, $`\pi^{\mathrm{mit}}`$ | not public for most projects | zero unless project data exist |
+| $`\epsilon_h`$, $`\epsilon_0`$ | agency emission factors by fuel and for all generation | lb CO₂/kWh to t CO₂/MWh (`lb_per_kwh_to_t_per_mwh`); $`\epsilon_0`$ should be a marginal factor, an average is a proxy |
+| $`v_t`$ | agency social-cost-of-greenhouse-gas estimates | state the dollar year, emission year and discount basis; convert dollar years with `dollar_factor` |
 
 ## Provenance rule
 
@@ -47,10 +47,10 @@ Values without a public anchor are labelled `assumption` (a single benchmark val
 ## Preparation steps
 
 1. **Define the request:** IT capacity, PUE and power factor; the planned service date and the delay or delay bins.
-2. **Private inputs:** convert market rates to USD per MW-IT-month; choose $\mu$, $s$, $q$; set $K$, $c$, $a$ and the deployment profile for the capital already committed; choose $r$ and $i$.
-3. **Ratepayer inputs:** upgrade cost per grid MW from the service study or a placeholder; the residual share after the applicable tariff protections; the financing rule (milestone-based or realization-linked) with $\phi_u$, $p_a$ (or $\phi_s$).
-4. **Pathways:** for each substitute that fills the delay, its months, utilization, emission factors, pathway probability and the social cost of CO$_2$ with its dollar year.
-5. **Checks** (made when a scenario is read): every value finite; fractions in $[0, 1]$; power factor in $(0, 1]$; PUE positive; months whole and non-negative; the financing rule's fields present and the others unset.
+2. **Private inputs:** convert market rates to USD per MW-IT-month; choose $`\mu`$, $`s`$, $`q`$; set $`K`$, $`c`$, $`a`$ and the deployment profile for the capital already committed; choose $`r`$ and $`i`$.
+3. **Ratepayer inputs:** upgrade cost per grid MW from the service study or a placeholder; the residual share after the applicable tariff protections; the financing rule (milestone-based or realization-linked) with $`\phi_u`$, $`p_a`$ (or $`\phi_s`$).
+4. **Pathways:** for each substitute that fills the delay, its months, utilization, emission factors, pathway probability and the social cost of CO₂ with its dollar year.
+5. **Checks** (made when a scenario is read): every value finite; fractions in $`[0, 1]`$; power factor in $`(0, 1]`$; PUE positive; months whole and non-negative; the financing rule's fields present and the others unset.
 
 ## Scenario file
 
@@ -90,29 +90,29 @@ JSON, read by `read_scenario` and written by `write_scenario`. Unknown or missin
 
 | Field | Symbol | Unit | Range |
 |---|---|---|---|
-| `delay_months` | $\tau$ | month | whole, ≥ 0 |
-| `discount_rate_annual` | $r$ | – | > −1 |
-| `project.it_capacity_mw` | $P_I$ | MW-IT | ≥ 0 |
+| `delay_months` | $`\tau`$ | month | whole, ≥ 0 |
+| `discount_rate_annual` | $`r`$ | – | > −1 |
+| `project.it_capacity_mw` | $`P_I`$ | MW-IT | ≥ 0 |
 | `project.pue` | PUE | – | > 0 |
 | `project.power_factor` | pf | – | (0, 1] |
-| `private.gross_value_usd_per_mw_it_month` | $V$ | USD per MW-IT-month | ≥ 0 |
-| `private.operating_margin` | $\mu$ | – | [0, 1] |
-| `private.realization_probability` | $q$ | – | [0, 1] |
-| `private.substitution_fraction` | $s$ | – | [0, 1] |
-| `private.committed_capital_usd_per_mw_it` | $K$ | USD per MW-IT | ≥ 0 |
-| `private.committed_capital_fraction` | $c$ | – | [0, 1] |
-| `private.deployment_peak` | $a$ | – | [0, 1] |
-| `private.carrying_rate_annual` | $i$ | – | ≥ 0 |
-| `private.deployment_profile` | shape of $\alpha_t$ | – | `static`, `linear`, `front_loaded`, `back_loaded` |
-| `private.contract_penalty_usd_per_mw_it_month` | $\pi^{\mathrm{contract}}$ | USD per MW-IT-month | ≥ 0, default 0 |
-| `private.mitigation_premium_usd_per_mw_it_month` | $\pi^{\mathrm{mit}}$ | USD per MW-IT-month | ≥ 0, default 0 |
-| `ratepayer.upgrade_cost_usd_per_grid_mw` | $U$ | USD per grid MW | ≥ 0 |
-| `ratepayer.utility_carrying_rate_annual` | $i_u$ | – | ≥ 0 |
-| `ratepayer.residual_share` | $\rho$ | – | [0, 1] |
+| `private.gross_value_usd_per_mw_it_month` | $`V`$ | USD per MW-IT-month | ≥ 0 |
+| `private.operating_margin` | $`\mu`$ | – | [0, 1] |
+| `private.realization_probability` | $`q`$ | – | [0, 1] |
+| `private.substitution_fraction` | $`s`$ | – | [0, 1] |
+| `private.committed_capital_usd_per_mw_it` | $`K`$ | USD per MW-IT | ≥ 0 |
+| `private.committed_capital_fraction` | $`c`$ | – | [0, 1] |
+| `private.deployment_peak` | $`a`$ | – | [0, 1] |
+| `private.carrying_rate_annual` | $`i`$ | – | ≥ 0 |
+| `private.deployment_profile` | shape of $`\alpha_t`$ | – | `static`, `linear`, `front_loaded`, `back_loaded` |
+| `private.contract_penalty_usd_per_mw_it_month` | $`\pi^{\mathrm{contract}}`$ | USD per MW-IT-month | ≥ 0, default 0 |
+| `private.mitigation_premium_usd_per_mw_it_month` | $`\pi^{\mathrm{mit}}`$ | USD per MW-IT-month | ≥ 0, default 0 |
+| `ratepayer.upgrade_cost_usd_per_grid_mw` | $`U`$ | USD per grid MW | ≥ 0 |
+| `ratepayer.utility_carrying_rate_annual` | $`i_u`$ | – | ≥ 0 |
+| `ratepayer.residual_share` | $`\rho`$ | – | [0, 1] |
 | `ratepayer.financing_rule` | | – | `milestone`, `realization_linked`, `explicit` |
-| `ratepayer.financing_probability` | $\phi_u$ | – | [0, 1]; `milestone`, `explicit` |
-| `ratepayer.abandonment_probability` | $p_a$ | – | [0, 1]; `milestone`, `realization_linked` |
-| `ratepayer.stranding_probability` | $\phi_s$ | – | [0, 1]; `explicit` |
+| `ratepayer.financing_probability` | $`\phi_u`$ | – | [0, 1]; `milestone`, `explicit` |
+| `ratepayer.abandonment_probability` | $`p_a`$ | – | [0, 1]; `milestone`, `realization_linked` |
+| `ratepayer.stranding_probability` | $`\phi_s`$ | – | [0, 1]; `explicit` |
 
 ## Grid, ranges and case files
 
@@ -130,12 +130,12 @@ Parameters are addressed by path: `delay_months`, `discount_rate_annual`, or `<g
 | Producer | Columns |
 |---|---|
 | `code-delay run` → `summary.json` | request scale (`grid_mw`, `interconnection_mva`); `private_usd`, `ratepayer_usd`, `social_usd` (Eq. 1); the private components; ratepayer carrying, stranding and delay differential; both DCIs (Eq. 6), written as `null` where undefined (zero delay or capacity) |
-| `code-delay run` → `private_monthly.csv` | month, $d_t$, $\alpha_t$, the four private terms and their total, undiscounted and with a `pv_` prefix |
+| `code-delay run` → `private_monthly.csv` | month, $`d_t`$, $`\alpha_t`$, the four private terms and their total, undiscounted and with a `pv_` prefix |
 | `evaluate` (sweep, LHS samples) | chosen inputs; `private_usd` and its components; `ratepayer_level_usd`, `ratepayer_delay_usd`, `ratepayer_stranding_usd`; both DCIs |
 | `rank_correlations` | target, input (categorical inputs as dummies), Spearman coefficient and its magnitude |
 | `acceleration_options` / `code-delay staged` | option, month of first service, served fraction, `beap_usd`, `avoided_ratepayer_usd` |
-| `bridge_pathway` | social cost of CO$_2$, bridge months, $p_h$, bridged energy, conditional and ex-ante incremental emissions, `added_social_usd`, avoided private and ratepayer cost, `implementation_cost_bound_usd` (strict upper bound on $C^{\mathrm{add}}$, total and per MWh) |
-| `dependence_stress` | $\beta$, delay, $q_\beta$, private cost and components, $\eta_{C,q}$, ratepayer level and the two differentials |
+| `bridge_pathway` | social cost of CO₂, bridge months, $`p_h`$, bridged energy, conditional and ex-ante incremental emissions, `added_social_usd`, avoided private and ratepayer cost, `implementation_cost_bound_usd` (strict upper bound on $`C^{\mathrm{add}}`$, total and per MWh) |
+| `dependence_stress` | $`\beta`$, delay, $`q_\beta`$, private cost and components, $`\eta_{C,q}`$, ratepayer level and the two differentials |
 | `tariff_cases` | case, overrides, private cost, ratepayer level, delay differential and stranding term |
 
 All money columns are present values in USD at the planned service date.

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "code-delay"
-version = "1.0.0"
+version = "1.0.1"
 description = "Cost of Delayed Energization (CoDE) for AI data centers: private, ratepayer and social accounting of delayed grid service (framework of Li & She, NAPS 2026)"
 readme = "README.md"
 license = {text = "MIT"}
