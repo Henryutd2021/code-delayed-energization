@@ -1,0 +1,12 @@
+# conda env create -f environment.yml && conda activate code-delay && pip install -e .
+# Pinned to the versions the tests were run with (Python 3.12).
+name: code-delay
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - numpy==2.5.4
+      - pandas==3.1.0
+      - pytest==9.2.0

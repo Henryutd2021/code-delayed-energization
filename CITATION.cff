@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article below (preferred citation) and this software."
+title: "CoDE framework: the Cost of Delayed Energization for AI data centers"
+version: "1.0.0"
+repository-code: "https://github.com/Henryutd2021/code-delayed-energization"
+license: MIT
+authors:
+  - family-names: Li
+    given-names: Honglin
+    orcid: "https://orcid.org/0000-0002-8405-3032"
+keywords:
+  - data centers
+  - grid interconnection
+  - large loads
+  - tariff design
+  - techno-economic analysis
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: Li
+      given-names: Honglin
+      orcid: "https://orcid.org/0000-0002-8405-3032"
+    - family-names: She
+      given-names: Buxin
+  title: "Quantifying the Cost of Delayed Energization (CoDE) for AI Data Centers"
+  collection-title: "2026 North American Power Symposium (NAPS)"
+  year: 2026
+  notes: "Accepted; DOI not yet assigned."
