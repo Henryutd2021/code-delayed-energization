@@ -43,7 +43,7 @@ The complete mathematics, with the article's equation numbers, is in [docs/formu
 ```bash
 git clone https://github.com/Henryutd2021/code-delayed-energization.git
 cd code-delayed-energization
-python -m venv .venv && source .venv/bin/activate      # Python 3.10 or newer (tested with 3.12)
+python3 -m venv .venv && source .venv/bin/activate    # needs Python 3.10+ (check: python3 --version); if older, use e.g. python3.12
 pip install -e ".[test]"
 python examples/minimal.py
 pytest
