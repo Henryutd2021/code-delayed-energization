@@ -1,5 +1,7 @@
 # CoDE framework: the Cost of Delayed Grid Energization for AI data centers
 
+Author: [Honglin Li](https://henryutd2021.github.io/)
+
 A documented, runnable implementation of the framework in:
 
 > Honglin Li and Buxin She. **Quantifying the Cost of Delayed Grid Energization (CoDE) for AI Data Centers.** *2026 North American Power Symposium (NAPS)*, accepted.
