@@ -1,8 +1,8 @@
-# CoDE framework: the Cost of Delayed Energization for AI data centers
+# CoDE framework: the Cost of Delayed Grid Energization for AI data centers
 
 A documented, runnable implementation of the framework in:
 
-> Honglin Li and Buxin She. **Quantifying the Cost of Delayed Energization (CoDE) for AI Data Centers.** *2026 North American Power Symposium (NAPS)*, accepted.
+> Honglin Li and Buxin She. **Quantifying the Cost of Delayed Grid Energization (CoDE) for AI Data Centers.** *2026 North American Power Symposium (NAPS)*, accepted.
 
 Grid interconnection has become a binding constraint on large data-center projects. CoDE prices the interval that a planned large load spends waiting for its first usable grid service. It maps the delayed IT capacity to grid MW and interconnection MVA, and it keeps the delay cost in three separate accounts: the developer (private), the utility and its ratepayers, and society. Two metrics make the results comparable across project sizes, delays and mitigation options: the delay cost intensity (DCI) and the break-even acceleration payment (BEAP). A net-benefit test states when the accounts may be combined.
 

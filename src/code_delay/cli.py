@@ -105,7 +105,7 @@ def _staged(args) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="code-delay", description="Cost of Delayed Energization (CoDE) framework")
+    parser = argparse.ArgumentParser(prog="code-delay", description="Cost of Delayed Grid Energization (CoDE) framework")
     sub = parser.add_subparsers(dest="command", required=True)
     p = sub.add_parser("example", help="write the illustrative scenario file (and optionally a grid and ranges)")
     p.add_argument("path")

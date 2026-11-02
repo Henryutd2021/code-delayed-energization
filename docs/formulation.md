@@ -1,6 +1,6 @@
 # Formulation
 
-The Cost of Delayed Energization (CoDE) as stated in the article (Li and She, NAPS 2026; see the README).
+The Cost of Delayed Grid Energization (CoDE) as stated in the article (Li and She, NAPS 2026; see the README).
 
 - Equation numbers (1)–(10) follow the article, so that each part can be matched to it.
 - Relations that the article states in the text, without a number, are collected in [Relations stated in the text](#relations-stated-in-the-text).

@@ -1,4 +1,4 @@
-"""CoDE framework: the Cost of Delayed Energization for large loads such as AI data centers.
+"""CoDE framework: the Cost of Delayed Grid Energization for large loads such as AI data centers.
 
 Present-value accounting of a delay before first usable grid service, kept separately
 for the developer (private), the utility and its ratepayers, and society, with delay cost
@@ -19,7 +19,7 @@ from .pathways import BridgeInputs, acceleration_options, bridge_pathway, lb_per
 from .sweeps import (evaluate, full_factorial, latin_hypercube, percentiles_by, rank_correlations,
                      sample_scenarios, tariff_cases)
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 __all__ = [
     "AvoidedCost", "BridgeInputs", "CodeVector", "NetBenefit", "PrivateInputs", "Project", "RatepayerInputs",
